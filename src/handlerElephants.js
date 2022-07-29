@@ -11,6 +11,7 @@ const computeData = (param, elephants) => {
   case 'count':
     return elephants.residents.length;
   case 'names':
+
     return elephants.residents.map((elephant) => elephant.name);
   case 'averageAge':
     return averageAge(elephants);
@@ -18,7 +19,6 @@ const computeData = (param, elephants) => {
     return null;
   }
 };
-
 const handlerElephants = (param) => {
   if (param === undefined) {
     return undefined;
