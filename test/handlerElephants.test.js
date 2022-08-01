@@ -24,6 +24,7 @@ describe('Testes da função HandlerElephants', () => {
   it('', () => {
     expect(handlerElephants('location')).toEqual(('NW'));
   });
+
   it('', () => {
     expect(handlerElephants({})).toEqual(('Parâmetro inválido, é necessário uma string'));
   });
