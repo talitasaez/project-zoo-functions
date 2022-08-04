@@ -1,30 +1,31 @@
 const { employees, species } = require('../data/zoo_data');
 const data = require('../data/zoo_data');
 
-function formatacao(parametro) {
-  const empl = employees.find((element) => (
-    element.id === parametro.id) || (element.firstName === parametro.name)
-  || (element.lastName === parametro.name));
-  if (empl === undefined) {
+function responsavel(par) {
+  const employee = employees.find((element) => (
+    element.id === par.id) || (element.firstName === par.name)
+  || (element.lastName === par.name));
+  if (employee === undefined) {
     throw new Error('Informações inválidas');
   }
-  const especies = empl.responsibleFor.map((element) => species.find((el) => el.id === element));
-  const especiesNome = especies.map((element) => element.name);
+  const especies = employee.responsibleFor.map((element) => species.find((el) =>
+    el.id === element));
+  const nome = especies.map((element) => element.name);
   const localizacao = especies.map((element) => element.location);
   const resultado = {
-    id: empl.id,
-    fullName: `${empl.firstName} ${empl.lastName}`,
-    species: especiesNome,
+    id: employee.id,
+    fullName: `${employee.firstName} ${employee.lastName}`,
+    species: nome,
     locations: localizacao,
   };
   return resultado;
 }
 function getEmployeesCoverage(parametro) {
-  const resultadoTotal = employees.map((element) => formatacao(element));
+  const resultadoTotal = employees.map((element) => responsavel(element));
   if (parametro === undefined) {
     return resultadoTotal;
   } if (parametro.id || parametro.name) {
-    return formatacao(parametro);
+    return responsavel(parametro);
   }
 }
 
